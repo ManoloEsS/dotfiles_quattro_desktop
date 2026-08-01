@@ -1,0 +1,37 @@
+{
+  "name": "PROJECT_NAME_backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "npx tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint .",
+    "build:ui": "cd ../PROJECT_NAME_frontend/ && npm run build",
+    "build:full": "rm -rf dist && npm run build && npm run build:ui",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.3.1",
+    "morgan": "^1.10.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "@types/express": "^5.0.6",
+    "@types/mongoose": "^5.11.96",
+    "@types/morgan": "^1.9.10",
+    "@types/node": "^25.5.0",
+    "eslint": "^10.1.0",
+    "globals": "^17.4.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2"
+  }
+}
