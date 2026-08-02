@@ -30,8 +30,8 @@ hl.unbind("SUPER + SHIFT + COMMA")
 -- Displaced tiling defaults → relocated
 hl.unbind("SUPER + O")
 hl.unbind("SUPER + P")
-hl.unbind("SUPER + SLASH")
-hl.unbind("SUPER + ALT + SLASH")
+hl.unbind("SUPER + code:61")
+hl.unbind("SUPER + ALT + code:61")
 
 -- Remove workspace TAB cycling (using comma/period instead)
 hl.unbind("SUPER + TAB")
