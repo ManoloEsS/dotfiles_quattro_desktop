@@ -1,5 +1,4 @@
--- Personal keybindings: Omarchy quattro defaults with custom overrides.
--- Loaded after Omarchy's default bindings, so unbinds here win.
+-- Personal keybindings loaded after Omarchy defaults.
 
 -- See current bindings and descriptions:
 --   omarchy menu keybindings --print
@@ -7,16 +6,16 @@
 -- Send a single Ctrl+<key> chord to the focused surface (used for universal cut).
 local function send_shortcut_once(mods, key)
   return function()
-    hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down" }))
+    hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down", window = "activewindow" }))
 
     hl.timer(function()
-      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up" }))
+      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up", window = "activewindow" }))
     end, { timeout = 50, type = "oneshot" })
   end
 end
 
 -- =====================================================
--- UNBINDS: keys we're remapping from Omarchy quattro defaults
+-- CONFLICTS WITH OMARCHY DEFAULTS
 -- =====================================================
 
 -- Navigation overrides (HJKL focus)
@@ -25,8 +24,8 @@ hl.unbind("SUPER + K")
 hl.unbind("SUPER + L")
 
 -- Workspace cycling (comma/period)
-hl.unbind("SUPER + comma")
-hl.unbind("SUPER + SHIFT + comma")
+hl.unbind("SUPER + COMMA")
+hl.unbind("SUPER + SHIFT + COMMA")
 
 -- Displaced tiling defaults → relocated
 hl.unbind("SUPER + O")
@@ -46,33 +45,6 @@ hl.unbind("SUPER + ALT + RETURN")
 -- Unbind SUPER+W (Close window → moving to Q); keep SUPER+X (Universal cut)
 hl.unbind("SUPER + W")
 
--- Unbind unused essential app launchers (terminal/browser/file manager only)
-hl.unbind("SUPER + SHIFT + RETURN")
-hl.unbind("SUPER + SHIFT + F")
-hl.unbind("SUPER + SHIFT + ALT + F")
-hl.unbind("SUPER + SHIFT + B")
-hl.unbind("SUPER + SHIFT + ALT + B")
-
--- Unbind unused webapp/app launcher keys
-hl.unbind("SUPER + SHIFT + M")
-hl.unbind("SUPER + SHIFT + ALT + M")
-hl.unbind("SUPER + SHIFT + N")
-hl.unbind("SUPER + SHIFT + D")
-hl.unbind("SUPER + SHIFT + G")
-hl.unbind("SUPER + SHIFT + O")
-hl.unbind("SUPER + SHIFT + W")
-hl.unbind("SUPER + SHIFT + SLASH")
-hl.unbind("SUPER + SHIFT + A")
-hl.unbind("SUPER + SHIFT + ALT + A")
-hl.unbind("SUPER + SHIFT + C")
-hl.unbind("SUPER + SHIFT + E")
-hl.unbind("SUPER + SHIFT + Y")
-hl.unbind("SUPER + SHIFT + ALT + G")
-hl.unbind("SUPER + SHIFT + CTRL + G")
-hl.unbind("SUPER + SHIFT + P")
-hl.unbind("SUPER + SHIFT + X")
-hl.unbind("SUPER + SHIFT + ALT + X")
-
 -- Volume override: 2% steps instead of default
 hl.unbind("XF86AudioRaiseVolume")
 hl.unbind("XF86AudioLowerVolume")
@@ -80,8 +52,8 @@ hl.unbind("XF86AudioLowerVolume")
 -- =====================================================
 -- VOLUME: 2% steps
 -- =====================================================
-o.bind("XF86AudioRaiseVolume", "Volume up 2%", "omarchy-audio-output-volume +2", { locked = true, repeating = true })
-o.bind("XF86AudioLowerVolume", "Volume down 2%", "omarchy-audio-output-volume -2", { locked = true, repeating = true })
+o.bind("XF86AudioRaiseVolume", "Volume up 2%", "omarchy-swayosd-client --output-volume +2", { locked = true, repeating = true })
+o.bind("XF86AudioLowerVolume", "Volume down 2%", "omarchy-swayosd-client --output-volume -2", { locked = true, repeating = true })
 
 -- =====================================================
 -- HJKL NAVIGATION (layout-aware)
@@ -109,9 +81,10 @@ o.bind("SUPER + ALT + SLASH", "Show key bindings", "omarchy-menu-keybindings")
 o.bind("SUPER + BACKSLASH", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
 o.bind("SUPER + SHIFT + I", "Toggle scrolling/master layout", "$HOME/.config/hypr/omarchy-hyprland-workspace-layout-scrolling-master-toggle")
 o.bind("SUPER + SHIFT + O", "Pop window out", "omarchy-hyprland-window-pop")
--- Cycle monitor scaling was retired in quattro; scaling now steps up/down.
-o.bind("SUPER + SHIFT + CTRL + SLASH", "Monitor scaling up", "omarchy-hyprland-monitor-scaling up")
-o.bind("SUPER + ALT + PERIOD", "Dismiss last notification", "omarchy-shell notifications dismissOne")
+o.bind("SUPER + SHIFT + CTRL + SLASH", "Cycle monitor scaling", "omarchy-hyprland-monitor-scaling-cycle")
+o.bind("SUPER + SHIFT + CTRL + ALT + SLASH", "Cycle monitor scaling backwards", "omarchy-hyprland-monitor-scaling-cycle --reverse")
+o.bind("SUPER + ALT + PERIOD", "Dismiss last notification", "makoctl dismiss")
+o.bind("SUPER + SHIFT + ALT + PERIOD", "Dismiss all notifications", "makoctl dismiss --all")
 
 -- =====================================================
 -- COLUMN RESIZE
@@ -139,6 +112,9 @@ o.bind("SUPER + N", "Roll next", hl.dsp.layout("rollnext"))
 o.bind("SUPER + P", "Roll previous", hl.dsp.layout("rollprev"))
 o.bind("SUPER + a", "Add master", hl.dsp.layout("addmaster"))
 o.bind("SUPER + z", "Remove master", hl.dsp.layout("removemaster"))
+
+-- Preserve Omarchy's pseudo-window action after using Super+P for rollprev.
+o.bind("SUPER + ALT + P", "Pseudo window", hl.dsp.window.pseudo())
 o.bind("SUPER + u", "Master factor 0.70", hl.dsp.layout("mfact exact 0.70"))
 o.bind("SUPER + i", "Master factor 0.66", hl.dsp.layout("mfact exact 0.66"))
 o.bind("SUPER + O", "Master factor 0.50", hl.dsp.layout("mfact exact 0.5"))

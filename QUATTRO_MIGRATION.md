@@ -10,18 +10,19 @@ The 3.8 Hyprland configs are preserved for reference under `legacy/hypr-3.8/`.
 |------|-----|---------------------|
 | Hyprland config | `.conf` (hyprlang, sourced) | `.lua` (Hyprland ≥ 0.55 deprecated hyprlang) |
 | Bar / launcher / notifications / idle / lock | waybar, walker, mako, hypridle, hyprlock, swayosd | Quickshell "Omarchy shell" (`~/.config/omarchy/shell.json`) |
-| Volume OSD | swayosd | `omarchy-audio-output-volume` (new OSD) |
+| Volume OSD | swayosd | `omarchy-swayosd-client` |
 | Tmux config | dual file (`.tmux.conf` + `.config/tmux/tmux.conf`) | single consolidated `.tmux.conf` (quattro defaults + personal additions) |
 
 ## Files in `hypromarchy/.config/hypr/`
 
-- `hyprland.lua` — entry point. Stock quattro file + `omarchy_preinstalled_bindings = false`, `require("hypr.envs")`, and `hl.config({ misc = { vrr = 2 } })`.
+- `hyprland.lua` — entry point. Installed Omarchy defaults plus personal modules, `require("hypr.envs")`, workspace-layout restoration, and `hl.config({ misc = { vrr = 2 } })`.
 - `monitors.lua` — GDK_SCALE 1; Acer ultrawide + Samsung portrait (bitdepth 10, sdrbrightness 0.85, transform 1); workspace rules for ws 1 → DP-3 and ws 2 → Acer (default).
 - `input.lua` — us / `compose:caps` / numlock / repeat 40/600 / touchpad 0.4; `scroll_touchpad` rules for (Alacritty|kitty|foot)=1.5 and ghostty=0.2.
 - `bindings.lua` — personal bind set (HJKL, comma/period workspaces, relocated defaults, master/scrolling layout keys, 2% volume steps, yazi/tmux launchers).
 - `looknfeel.lua` — gaps 0, border 3, cyan→green gradient, default `scrolling` layout, blur, master block, borderangle animation.
 - `autostart.lua` — auto-starts `hyprsunset` (profiles in `hypr/hyprsunset.conf`).
 - `envs.lua` — `HYPRLAND_NO_EXTRA_SYNC=1`, `COLORTERM=truecolor`.
+- `workspace-layouts.lua` — restores persisted workspace layout rules after reload.
 - `omarchy-hyprland-workspace-layout-scrolling-master-toggle` — toggles **scrolling ↔ master** (unique; quattro's built-in only does dwindle ↔ scrolling). Persists the rule to `~/.local/state/omarchy/workspace-layouts/` and applies via `hyprctl eval`.
 - `hyprsunset.conf`, `xdph.conf`, `wallpapers/` — unchanged, still active.
 
@@ -56,13 +57,13 @@ The 3.8 Hyprland configs are preserved for reference under `legacy/hypr-3.8/`.
 ## Known caveats / deferred
 
 - **Idle behavior**: the custom `hypridle.conf` listeners (brightness → 10%, keyboard backlight off, dpms off at 5.5 min) are not representable in the new shell idle (`shell.json` exposes only `screensaver`/`lock` timings). Deferred — revisit via a `post-boot` hook or shell idle callbacks.
-- **Monitor scaling**: `omarchy-hyprland-monitor-scaling-cycle` was retired in quattro (only `up`/`down` remain). `SUPER + SHIFT + CTRL + SLASH` is now bound to `omarchy-hyprland-monitor-scaling up`.
+- **Monitor scaling**: this installed alpha provides `omarchy-hyprland-monitor-scaling-cycle` and its `--reverse` form. The desktop binds them to relocated forward/reverse shortcuts.
 - **Lua param names to verify against `/usr/share/hypr/stubs` on the target** (Hyprland 0.55+):
   - `hl.monitor`: `bitdepth`, `sdrbrightness`, `transform`
   - `hl.config`: `decoration.blur` fields, `scrolling.explicit_column_widths`
   - `hl.animation`: `borderangle` with `style = "loop"`
   - `hl.workspace_rule`: `monitor` (desc: names) and `default`
-- **Super+X**: left bound to quattro's default universal cut (per decision).
+- **Super+X**: left bound to quattro's default universal cut (per decision). `Super+W` also sends universal cut after close-window is moved to `Super+Q`.
 - **Tmux "Work" session**: `SUPER + ALT + RETURN` uses quattro's `omarchy-launch-terminal-tmux` (session named `Work`), replacing the old `helper` session name.
-- **Essential app binds** (SUPER+SHIFT+RETURN/B/F browser & file manager) are unbound; only terminal, tmux, and yazi launch keys remain.
+- **Essential app binds** (SUPER+SHIFT+RETURN/B/F browser & file manager) are not copied; only terminal, tmux, and yazi launch keys remain. The installed default loader does not currently load the broader app block.
 - **TMUX plugin dir**: the vendored `plugins/` tree under `tmuxomarchy/.config/tmux/plugins/` is copied onto disk but gitignored (the original accidentally tracked it as gitlinks). TPM installs/manages plugins to `~/.tmux/plugins/` on first run (`prefix + I`). `tmux-sensible` may override `default-terminal` — verify the status bar still looks right after TPM install.

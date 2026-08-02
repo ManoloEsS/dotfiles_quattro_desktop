@@ -1,11 +1,7 @@
--- Keep only your personal input overrides here. Uncommented settings below
--- replace Omarchy's defaults.
+-- Keep only input settings that differ from Omarchy's defaults.
 
 hl.config({
   input = {
-    kb_layout = "us",
-    kb_options = "compose:caps",
-
     repeat_rate = 40,
     repeat_delay = 600,
 

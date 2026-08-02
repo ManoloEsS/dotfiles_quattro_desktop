@@ -13,7 +13,8 @@ case "$CURRENT_LAYOUT" in
   *) NEW_LAYOUT=scrolling ;;
 esac
 
-# Persist the rule so it survives hyprctl reload (auto-required by default/hypr/workspace-layouts.lua).
+# Persist the rule so it survives reloads (workspace-layouts.lua loads these
+# state files after the Omarchy defaults).
 mkdir -p "$LAYOUTS_DIR"
 printf 'hl.workspace_rule({ workspace = "%s", layout = "%s" })\n' "$ACTIVE_WORKSPACE" "$NEW_LAYOUT" >"$LAYOUT_FILE"
 
