@@ -21,6 +21,7 @@ The 3.8 Hyprland configs are preserved for reference under `legacy/hypr-3.8/`.
 - `bindings.lua` — personal bind set (HJKL, comma/period workspaces, relocated defaults, master/scrolling layout keys, 2% volume steps, yazi/tmux launchers).
 - `looknfeel.lua` — gaps 0, border 3, cyan→green gradient, default `scrolling` layout, blur, master block, borderangle animation.
 - `autostart.lua` — auto-starts `hyprsunset` (profiles in `hypr/hyprsunset.conf`).
+- `hypridle.conf` — Omarchy idle screensaver, lock, and wake behavior used by `Super+Ctrl+I`.
 - `envs.lua` — `HYPRLAND_NO_EXTRA_SYNC=1`, `COLORTERM=truecolor`.
 - `workspace-layouts.lua` — restores persisted workspace layout rules after reload.
 - `omarchy-hyprland-workspace-layout-scrolling-master-toggle` — toggles **scrolling ↔ master** (unique; quattro's built-in only does dwindle ↔ scrolling). Persists the rule to `~/.local/state/omarchy/workspace-layouts/` and applies via `hyprctl eval`.
@@ -65,5 +66,5 @@ The 3.8 Hyprland configs are preserved for reference under `legacy/hypr-3.8/`.
   - `hl.workspace_rule`: `monitor` (desc: names) and `default`
 - **Super+X**: left bound to quattro's default universal cut (per decision). `Super+W` also sends universal cut after close-window is moved to `Super+Q`.
 - **Tmux "Work" session**: `SUPER + ALT + RETURN` uses quattro's `omarchy-launch-terminal-tmux` (session named `Work`), replacing the old `helper` session name.
-- **Essential app binds** (SUPER+SHIFT+RETURN/B/F browser & file manager) are not copied; only terminal, tmux, and yazi launch keys remain. The installed default loader does not currently load the broader app block.
+- **Essential app binds** (SUPER+SHIFT+RETURN/B/F browser & file manager and SUPER+SHIFT+N editor) are defined explicitly because the installed default loader does not currently load the plain app block. The broader preinstalled app/webapp block remains excluded.
 - **TMUX plugin dir**: the vendored `plugins/` tree under `tmuxomarchy/.config/tmux/plugins/` is copied onto disk but gitignored (the original accidentally tracked it as gitlinks). TPM installs/manages plugins to `~/.tmux/plugins/` on first run (`prefix + I`). `tmux-sensible` may override `default-terminal` — verify the status bar still looks right after TPM install.

@@ -100,6 +100,12 @@ o.bind("SUPER + W", "Universal cut", send_shortcut_once("CTRL", "X"))
 o.bind("SUPER + RETURN", "Terminal", { omarchy = "terminal" })
 o.bind("SUPER + ALT + RETURN", "Tmux", { omarchy = "terminal-tmux" })
 o.bind("SUPER + E", "Yazi", o.launch("xdg-terminal-exec yazi"))
+o.bind("SUPER + SHIFT + RETURN", "Browser", { omarchy = "browser" })
+o.bind("SUPER + SHIFT + F", "File manager", { omarchy = "nautilus" })
+o.bind("SUPER + ALT + SHIFT + F", "File manager (cwd)", { omarchy = "nautilus-cwd" })
+o.bind("SUPER + SHIFT + B", "Browser", { omarchy = "browser" })
+o.bind("SUPER + SHIFT + ALT + B", "Browser (private)", { omarchy = "browser --private" })
+o.bind("SUPER + SHIFT + N", "Editor", { omarchy = "editor" })
 
 -- =====================================================
 -- MASTER LAYOUT

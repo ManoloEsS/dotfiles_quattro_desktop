@@ -31,6 +31,7 @@ These settings are intentionally retained from the desktop project:
 - 600ms key repeat delay, numlock, touchpad scrolling, and terminal scrolling
   rules.
 - Automatic `hyprsunset` startup with the project temperature profiles.
+- Omarchy `hypridle` configuration for screensaver, locking, and wake handling.
 - `HYPRLAND_NO_EXTRA_SYNC=1` and `COLORTERM=truecolor`.
 
 The monitor definitions are hardware-specific by design and must not be
@@ -59,8 +60,8 @@ then relocates the displaced functionality where practical:
 The project intentionally keeps `Super+X` as Omarchy universal cut and uses
 `Super+W` for the same cut action after moving close-window to `Super+Q`.
 Browser, file-manager, editor, webapp, and other preinstalled app bindings are
-not copied into this user file because the installed default loader does not
-load that block and the desktop project intentionally does not use them.
+defined explicitly where the installed default loader does not load the plain
+application block. The broader preinstalled webapp block is not copied.
 
 ## Command Compatibility
 
@@ -74,6 +75,7 @@ Omarchy update:
 - Layout APIs: `hyprctl eval` with `hl.workspace_rule`
 - Terminal/Tmux launchers: `omarchy-launch-terminal` and
   `omarchy-launch-terminal-tmux`
+- Idle locking: `omarchy-toggle-idle` and `hypridle`
 
 Older commands such as `omarchy-audio-output-volume`,
 `omarchy-hyprland-monitor-scaling up`, and `omarchy-shell notifications
@@ -112,6 +114,7 @@ Verify:
 - Both notification dismissal shortcuts work.
 - Volume changes use 2% steps.
 - `hyprsunset` is running and follows all four profiles.
+- `Super+Ctrl+I` starts and stops `hypridle`; the Waybar idle indicator changes.
 
 ## Stow Safety
 
