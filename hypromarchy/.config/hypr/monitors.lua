@@ -15,7 +15,10 @@ hl.monitor({ output = "desc:Acer Technologies ED340CU J0 54520961D3W01", mode = 
 hl.monitor({ output = "desc:Samsung Electric Company LF24T35 HCNR501668", mode = "1920x1080@74.97", position = "-1080x0", scale = omarchy_monitor_scale, transform = 1, bitdepth = 10, sdrbrightness = 0.85 })
 
 -- Workspace assignments.
-hl.workspace_rule({ workspace = "1", monitor = "DP-3" })
+hl.workspace_rule({
+  workspace = "1",
+  monitor = "desc:Samsung Electric Company LF24T35 HCNR501668",
+})
 hl.workspace_rule({ workspace = "2", monitor = "desc:Acer Technologies ED340CU J0 54520961D3W01", default = true })
 
 -- Portrait/rotated secondary monitor example (transform: 1 = 90°, 3 = 270°).

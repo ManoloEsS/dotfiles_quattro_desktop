@@ -7,10 +7,10 @@
 -- Send a single Ctrl+<key> chord to the focused surface (used for universal cut).
 local function send_shortcut_once(mods, key)
   return function()
-    hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down" }))
+    hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "down", window = "activewindow" }))
 
     hl.timer(function()
-      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up" }))
+      hl.dispatch(hl.dsp.send_key_state({ mods = mods, key = key, state = "up", window = "activewindow" }))
     end, { timeout = 50, type = "oneshot" })
   end
 end
@@ -43,35 +43,15 @@ hl.unbind("SUPER + CTRL + TAB")
 hl.unbind("SUPER + RETURN")
 hl.unbind("SUPER + ALT + RETURN")
 
--- Unbind SUPER+W (Close window → moving to Q); keep SUPER+X (Universal cut)
+-- Unbind SUPER+W (Close window); SUPER+X remains Quattro's universal cut.
 hl.unbind("SUPER + W")
 
--- Unbind unused essential app launchers (terminal/browser/file manager only)
-hl.unbind("SUPER + SHIFT + RETURN")
-hl.unbind("SUPER + SHIFT + F")
-hl.unbind("SUPER + SHIFT + ALT + F")
-hl.unbind("SUPER + SHIFT + B")
-hl.unbind("SUPER + SHIFT + ALT + B")
-
--- Unbind unused webapp/app launcher keys
+-- Personal scrolling/master bindings reuse Quattro application shortcuts.
 hl.unbind("SUPER + SHIFT + M")
-hl.unbind("SUPER + SHIFT + ALT + M")
 hl.unbind("SUPER + SHIFT + N")
-hl.unbind("SUPER + SHIFT + D")
-hl.unbind("SUPER + SHIFT + G")
 hl.unbind("SUPER + SHIFT + O")
-hl.unbind("SUPER + SHIFT + W")
-hl.unbind("SUPER + SHIFT + SLASH")
-hl.unbind("SUPER + SHIFT + A")
-hl.unbind("SUPER + SHIFT + ALT + A")
-hl.unbind("SUPER + SHIFT + C")
-hl.unbind("SUPER + SHIFT + E")
-hl.unbind("SUPER + SHIFT + Y")
-hl.unbind("SUPER + SHIFT + ALT + G")
-hl.unbind("SUPER + SHIFT + CTRL + G")
 hl.unbind("SUPER + SHIFT + P")
-hl.unbind("SUPER + SHIFT + X")
-hl.unbind("SUPER + SHIFT + ALT + X")
+hl.unbind("SUPER + SHIFT + Y")
 
 -- Volume override: 2% steps instead of default
 hl.unbind("XF86AudioRaiseVolume")

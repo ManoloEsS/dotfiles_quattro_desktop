@@ -5,10 +5,10 @@ dofile((os.getenv("OMARCHY_PATH") or "/usr/share/omarchy") .. "/default/hypr/boo
 
 -- Disable all Omarchy default bindings. Add your own in hypr/bindings.lua.
 -- omarchy_default_bindings = false
-
--- Disable only bindings for Omarchy's preinstalled apps/web apps while
--- keeping core window-manager bindings.
-omarchy_preinstalled_bindings = false
+--
+-- Or disable only bindings for Omarchy's preinstalled apps/web apps while
+-- keeping core window-manager bindings:
+-- omarchy_preinstalled_bindings = false
 
 -- Load Omarchy defaults.
 require("default.hypr.omarchy")
@@ -17,7 +17,6 @@ require("default.hypr.omarchy")
 -- defaults so package updates can improve the defaults without rewriting your
 -- ~/.config/hypr files.
 require("hypr.monitors")
-require("hypr.input")
 require("hypr.bindings")
 require("hypr.looknfeel")
 require("hypr.autostart")
@@ -29,5 +28,5 @@ require("default.hypr.toggles")
 -- Add any other personal Hyprland configuration below.
 -- o.window("qemu", { workspace = "5" })
 
--- Free-sync / variable refresh rate (VVR) for gaming monitors.
+-- Variable refresh rate for gaming monitors.
 hl.config({ misc = { vrr = 2 } })
