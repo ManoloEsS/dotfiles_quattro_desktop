@@ -139,6 +139,7 @@ o.bind("SUPER + W", "Universal cut", send_shortcut_once("CTRL", "X"))
 -- =====================================================
 -- APP LAUNCHERS (personal overrides)
 -- =====================================================
+o.bind("SUPER + CTRL + M", "Music", { omarchy = "spotify" })
 o.bind("SUPER + RETURN", "Terminal", { omarchy = "terminal" })
 o.bind("SUPER + ALT + RETURN", "Tmux", { omarchy = "terminal-tmux" })
 o.bind("SUPER + E", "Yazi", o.launch("xdg-terminal-exec yazi"))
