@@ -43,7 +43,7 @@ backup_conflicts() {
 echo "==> Stowing configs..."
 echo "    Backups will be stored in $BACKUP_DIR when conflicts are found."
 
-for pkg in hypromarchy hyprncspot tmuxomarchy wezterm ghostty yazi zsh pl10k mise opencode; do
+for pkg in hypromarchy hyprncspot tmuxomarchy wezterm ghostty yazi zsh pl10k mise opencode pi; do
     echo "    Processing $pkg..."
 
     backup_conflicts "$pkg"

@@ -18,6 +18,7 @@ desktop. Stow targets are relative to `$HOME` unless noted otherwise.
 | `pl10k` | `~/.p10k.zsh` | Optional | Loaded by the Zsh configuration. |
 | `mise` | `~/.config/mise/` | Optional | Missing from legacy Stow script. |
 | `opencode` | `~/.config/opencode.json`, `~/.config/skills/` | Optional | User-level agent configuration and skills; may conflict with existing global skills. |
+| `pi` | `~/.pi/agent/extensions/` | Optional | Pi TUI common-patterns extension; use `/reload` after changes. |
 | `.claude` | `~/.claude/` | Manual/optional | Not included by the legacy Stow script; contains Claude project skills. |
 
 ## Non-Deployable Content
