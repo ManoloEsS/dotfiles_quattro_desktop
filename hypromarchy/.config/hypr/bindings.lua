@@ -118,12 +118,14 @@ o.bind("SUPER + period", "Next workspace", hl.dsp.focus({ workspace = "e+1" }))
 -- DISPLACED DEFAULTS → NEW HOMES
 -- =====================================================
 o.bind("SUPER + SLASH", "Toggle split or consume column", toggle_layout_split())
-o.bind("SUPER + ALT + SLASH", "Show key bindings", "omarchy-menu-keybindings")
 o.bind("SUPER + BACKSLASH", "Toggle workspace layout", "omarchy-hyprland-workspace-layout-toggle")
 o.bind("SUPER + SHIFT + I", "Toggle scrolling/master layout", "$HOME/.config/hypr/omarchy-hyprland-workspace-layout-scrolling-master-toggle")
 o.bind("SUPER + SHIFT + O", "Pop window out", "omarchy-hyprland-window-pop")
--- Cycle monitor scaling was retired in quattro; scaling now steps up/down.
-o.bind("SUPER + SHIFT + CTRL + SLASH", "Monitor scaling up", "omarchy-hyprland-monitor-scaling up")
+o.bind("SUPER + TAB", "Monitor scaling up", "omarchy-hyprland-monitor-scaling up")
+o.bind("SUPER + SHIFT + TAB", "Monitor scaling down", "omarchy-hyprland-monitor-scaling down")
+o.bind("SUPER + ALT + SLASH", "Dismiss all notifications", "omarchy-shell notifications dismissAll")
+o.bind("SUPER + CTRL + ALT + SHIFT + SLASH", "Show key bindings", "omarchy-menu-keybindings")
+o.bind("SUPER + ALT + P", "Pseudo window", hl.dsp.window.pseudo())
 o.bind("SUPER + ALT + PERIOD", "Dismiss last notification", "omarchy-shell notifications dismissOne")
 
 -- =====================================================
